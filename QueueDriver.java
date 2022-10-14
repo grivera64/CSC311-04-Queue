@@ -15,7 +15,8 @@ public class QueueDriver {
         System.out.printf("Q: %s\n", q);
         q.offer(50);
         System.out.printf("Q: %s\n", q);
-        q.offer(60);
+
+        q.offer(60);                        // Reallocates more space
         System.out.printf("Q: %s\n", q);
 
         /* Remove the first 2 elements from the queue */
@@ -43,7 +44,8 @@ public class QueueDriver {
         System.out.printf("Q: %s\n", q);
         q.poll();
         System.out.printf("Q: %s\n", q);
-        q.poll();
+
+        q.poll();                                   // Queue Underflow
         System.out.printf("Q: %s\n", q);
     }
 }
