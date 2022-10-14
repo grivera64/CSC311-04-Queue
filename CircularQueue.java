@@ -14,7 +14,7 @@ public class CircularQueue<E> implements Queue<E> {
 
     private static final int DEFAULT_CAPACITY = 5;
 
-    private final E[] q;                        // Array reference for actual queue
+    private E[] q;                              // Array reference for actual queue
     private int front;                          // The front of the queue
     private int rear;                           // The back of the queue
     private int size;                           // The number of elements in the queue
@@ -34,12 +34,10 @@ public class CircularQueue<E> implements Queue<E> {
     @Override
     public boolean offer(E element) {
 
-        /* Check if you can insert a new element to the queue */
+        /* Check if you need more space to insert a new element to the queue */
         if (this.isFull()) {
-            /* TODO: Add reallocate method (optional) */
             System.out.println("The queue is out of space, calling reallocate...");
-//            this.reallocate();
-            return false;
+            this.reallocate();
         }
 
         /* Insert the element */
@@ -49,8 +47,23 @@ public class CircularQueue<E> implements Queue<E> {
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     private void reallocate() {
-        /* TODO: Try to implement reallocate */
+        /* Create a new Queue */
+        E[] newQ = (E[]) new Object[this.capacity * 2];
+
+        /* Copy the elements from the first queue to the new queue */
+        int j = this.front;
+        for (int i = 0; i < this.capacity; i++) {
+            newQ[i] = this.q[j];
+            j = (j + 1) % this.capacity;
+        }
+
+        /* Set the queue data to match that of the new queue */
+        this.q = newQ;
+        this.capacity *= 2;
+        this.front = 0;
+        this.rear = this.size;
     }
 
     @Override
