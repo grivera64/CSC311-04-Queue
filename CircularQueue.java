@@ -55,12 +55,23 @@ public class CircularQueue<E> implements Queue<E> {
 
     @Override
     public E poll() {
-        return null;
+
+        /* Check if there is an element to remove */
+        if (this.isEmpty()) {
+            System.out.println("Queue Underflow!");         // poll does not throw an exception for Queues,
+            return null;                                    // while remove/pop does for other data structures
+        }
+
+        /* Remove the front element */
+        E tmp = this.q[this.front];
+        this.front = (this.front + 1) % this.capacity;
+        this.size--;
+        return tmp;                                         // Return the deleted element
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.size < 1;
     }
 
     @Override
@@ -75,15 +86,20 @@ public class CircularQueue<E> implements Queue<E> {
 
     @Override
     public String toString() {
+
+        if (this.isEmpty()) {
+            return "[]";
+        }
+
         StringBuilder s = new StringBuilder("[");
 
         final int end = this.front + this.size;
-        for (int i = this.front; i < end - 1; i = (i + 1) % this.q.length) {
-            s.append(this.q[i]);
+        for (int i = this.front; i < end - 1; i++) {
+            s.append(this.q[i % this.capacity]);
             s.append(" | ");
         }
 
-        s.append(this.q[end - 1]);
+        s.append(this.q[(end - 1) % this.capacity]);
         s.append(']');
         return s.toString();
     }
