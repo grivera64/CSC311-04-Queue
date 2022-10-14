@@ -21,7 +21,7 @@ public interface Queue<E> {
 2. Compile the .java files
 ```bash
     $ cd CSC311-04-Queue
-    $ javac ArrayQueue.java Queue.java QueueDriver.java
+    $ javac CircularQueue.java Queue.java QueueDriver.java
 ```
 3. Run the driver code
 ```bash
