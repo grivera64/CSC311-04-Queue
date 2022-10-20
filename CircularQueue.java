@@ -94,7 +94,13 @@ public class CircularQueue<E> implements Queue<E> {
 
     @Override
     public E peek() {
-        return null;
+        /* Check if there is an element to remove */
+        if (this.isEmpty()) {
+            System.out.println("Queue Underflow!");         // peek does not throw an exception for Queues,
+            return null;                                    // while peek/remove/pop does for other data structures
+        }
+
+        return this.q[this.front];
     }
 
     @Override
