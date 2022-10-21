@@ -106,12 +106,12 @@ public class CircularQueue<E> implements Queue<E> {
     @Override
     public String toString() {
 
+        /* Print out the empty queue */
         if (this.isEmpty()) {
             return "[]";
         }
 
         StringBuilder s = new StringBuilder("[");
-
         final int end = this.front + this.size;
         for (int i = this.front; i < end - 1; i++) {
             s.append(this.q[i % this.capacity]);

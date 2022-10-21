@@ -32,10 +32,13 @@ public class QueueDriver {
         System.out.printf("Q: %s\n", q);
 
         /* Remove the first 2 elements from the queue */
-        q.poll();
+        Integer tmp = q.poll();
+        System.out.printf("Polled element is: %d\n", tmp);
         System.out.printf("Q: %s\n", q);
-        q.poll();
+        tmp = q.poll();
+        System.out.printf("Polled element is: %d\n", tmp);
         System.out.printf("Q: %s\n", q);
+        System.out.println();
 
         /* Offer 2 more elements */
         q.offer(80);
@@ -65,5 +68,6 @@ public class QueueDriver {
         System.out.printf("Q: %s\n", q);
 
         System.out.printf("IsEmpty: %b\n", q.isEmpty());
+        System.out.printf("Poll returns: %s\n", q.peek());
     }
 }
